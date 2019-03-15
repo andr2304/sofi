@@ -118,7 +118,7 @@ use dmstr\widgets\Alert;
                     </a>
                 </li>
                 <li>
-                    <a href='javascript::;'>
+                    <a href="javascript::">
                         <h4 class="control-sidebar-subheading">
                             Update Resume
                             <span class="label label-success pull-right">95%</span>
@@ -130,7 +130,7 @@ use dmstr\widgets\Alert;
                     </a>
                 </li>
                 <li>
-                    <a href='javascript::;'>
+                    <a href="javascript::">
                         <h4 class="control-sidebar-subheading">
                             Laravel Integration
                             <span class="label label-waring pull-right">50%</span>
