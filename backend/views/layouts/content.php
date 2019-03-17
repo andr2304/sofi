@@ -106,7 +106,7 @@ use dmstr\widgets\Alert;
             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class='control-sidebar-menu'>
                 <li>
-                    <a href='javascript::;'>
+                    <a href="javascript::">
                         <h4 class="control-sidebar-subheading">
                             Custom Template Design
                             <span class="label label-danger pull-right">70%</span>
