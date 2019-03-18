@@ -2,6 +2,7 @@
 
 namespace backend\controllers\shop;
 
+use backend\forms\shop\CategoryForm;
 use Yii;
 use common\models\shop\ShopCategories;
 use common\models\search\shop\CategoriesSearch;
@@ -64,14 +65,18 @@ class CategoriesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new ShopCategories();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $form = new CategoryForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $category = $this->service->create($form);
+                return $this->redirect(['view', 'id' => $category->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
-
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 

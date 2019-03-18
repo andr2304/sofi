@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\shop\ShopCategories;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\shop\CategoriesSearch */
@@ -11,10 +12,6 @@ $this->title = 'Shop Categories';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="shop-categories-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a('Create Shop Categories', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -23,13 +20,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
+            [
+                'attribute' => 'name',
+                'value' => function (ShopCategories $model) {
+                    $indent = ($model->depth > 1 ? str_repeat('&nbsp;&nbsp;', $model->depth - 1) . ' ' : '');
+                    return $indent . Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+                },
+                'format' => 'raw',
+            ],
             'slug',
             'title',
-            'description:ntext',
+            //'description:ntext',
             //'meta_json:ntext',
             //'lft',
             //'rgt',
