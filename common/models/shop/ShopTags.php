@@ -24,35 +24,16 @@ class ShopTags extends \yii\db\ActiveRecord
         return 'shop_tags';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['name', 'slug'], 'required'],
-            [['name', 'slug'], 'string', 'max' => 255],
-            [['slug'], 'unique'],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'slug' => 'Slug',
-        ];
-    }
-
     public static function create($name, $slug){
         $model = new static();
         $model->name = $name;
         $model->slug = $slug;
         return $model;
+    }
+
+    public function edit($name, $slug){
+        $this->name = $name;
+        $this->slug = $slug;
     }
 
 }

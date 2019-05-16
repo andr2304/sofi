@@ -30,4 +30,12 @@ class TagService
         $this->repository->save($model);
         return $model;
     }
+
+    public function edit(ShopTags $model,TagForm $form){
+        $model->edit(
+            $form->name,
+            $form->slug
+        );
+        $this->repository->save($model);
+    }
 }

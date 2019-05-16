@@ -119,7 +119,7 @@ class TagController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+   /* public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -129,6 +129,28 @@ class TagController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }*/
+
+    public function actionUpdate($id)
+    {
+        $tag = $this->findModel($id);
+        $form = new TagForm($tag);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try{
+               $this->service->edit($tag, $form);
+               return $this->redirect(['view', 'id' => $tag->id]);
+            }catch (\DomainException $e){
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+
+        }
+
+        return $this->render('update', [
+            'model' => $form,
+            'tag' => $tag,
         ]);
     }
 

@@ -17,7 +17,7 @@ class TagsSearch extends ShopTags
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            //[['id'], 'integer'],
             [['name', 'slug'], 'safe'],
         ];
     }
@@ -57,9 +57,9 @@ class TagsSearch extends ShopTags
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+       /* $query->andFilterWhere([
             'id' => $this->id,
-        ]);
+        ]);*/
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug]);
