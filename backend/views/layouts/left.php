@@ -35,6 +35,17 @@
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Users', 'url' => ['/user'],],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    [
+                        'label' => 'shop',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Категории', 'icon' => 'file-o', 'url' => ['/shop/categories/index'], 'active' => $this->context->id == 'shop/categories'],
+                            ['label' => 'Продукт', 'icon' => 'file-o', 'url' => ['/shop/product/index'], 'active' => $this->context->id == 'shop/product'],
+                            ['label' => 'Характеристика', 'icon' => 'file-o', 'url' => ['/shop/characteristic/index'], 'active' => $this->context->id == 'shop/characteristic'],
+                            ['label' => 'Теги', 'icon' => 'file-o', 'url' => ['/shop/tag/index'], 'active' => $this->context->id == 'shop/tag'],
+                        ],
+                    ],
                     /*[
                         'label' => 'Some tools',
                         'icon' => 'share',
